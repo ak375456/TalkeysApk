@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -47,59 +48,67 @@ fun ExploreEventsScreen(navController: NavController) {
         Event("Sports Festival", "Olympic Stadium", R.drawable.ic_eventbanner)
     )
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black)
-                .padding(bottom = 56.dp) // Padding for BottomBar
-        ) {
-            // Top Bar
-            HomeTopBar()
-
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                item {
-                    Text(
-                        text = "Explore Events",
-                        style = TextStyle(
-                            fontSize = 22.sp,
-                            fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
-                            color = Color.White,
-                            textAlign = TextAlign.Center
-                        ),
-                        modifier = Modifier.padding(top = 12.dp, start = 19.dp)
-                    )
-                }
-
-                item { Spacer(modifier = Modifier.height(4.dp)) }
-
-                item { CategoryTitle("Gaming") }
-                item { Spacer(modifier = Modifier.height(1.dp)) }
-                item { EventRow(category1Events) }
-                item { Spacer(modifier = Modifier.height(5.dp)) }
-
-                item { CategoryTitle("Parties") }
-                item { Spacer(modifier = Modifier.height(1.dp)) }
-                item { EventRow(category2Events) }
-                item { Spacer(modifier = Modifier.height(5.dp)) }
-
-                item { CategoryTitle("Category 3") }
-                item { Spacer(modifier = Modifier.height(1.dp)) }
-                item { EventRow(category3Events) }
-                item { Spacer(modifier = Modifier.height(5.dp)) }
-
-                item { Footer() }
-            }
+    Scaffold(
+        bottomBar = {
+            BottomBar(navController = navController, scrollState = rememberScrollState())
         }
+    ) { innerPadding ->
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize()
+                    .background(Color.Black)
+                    .padding(bottom = 56.dp) // Padding for BottomBar
+            ) {
+                // Top Bar
+                HomeTopBar()
 
-        val scrollState= rememberScrollState()
-        // BottomBar
-        BottomBar(navController = navController, scrollState,modifier = Modifier.align(Alignment.BottomCenter))
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    item {
+                        Text(
+                            text = "Explore Events",
+                            style = TextStyle(
+                                fontSize = 22.sp,
+                                fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+                                color = Color.White,
+                                textAlign = TextAlign.Center
+                            ),
+                            modifier = Modifier.padding(top = 12.dp, start = 19.dp)
+                        )
+                    }
+
+                    item { Spacer(modifier = Modifier.height(4.dp)) }
+
+                    item { CategoryTitle("Gaming") }
+                    item { Spacer(modifier = Modifier.height(1.dp)) }
+                    item { EventRow(category1Events) }
+                    item { Spacer(modifier = Modifier.height(5.dp)) }
+
+                    item { CategoryTitle("Parties") }
+                    item { Spacer(modifier = Modifier.height(1.dp)) }
+                    item { EventRow(category2Events) }
+                    item { Spacer(modifier = Modifier.height(5.dp)) }
+
+                    item { CategoryTitle("Category 3") }
+                    item { Spacer(modifier = Modifier.height(1.dp)) }
+                    item { EventRow(category3Events) }
+                    item { Spacer(modifier = Modifier.height(5.dp)) }
+
+                    item { Footer() }
+                }
+            }
+
+
+        }
     }
 }
+
+
+
 
 
 @Composable

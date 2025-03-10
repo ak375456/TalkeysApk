@@ -35,7 +35,9 @@ import com.example.talkies.ui.HomeTopBar
 fun HomeScreen(navController: NavController) {
     val scrollState = rememberScrollState()
     Scaffold(
-        topBar = { HomeTopBar() } // ✅ Keeps TopBar fixed
+        topBar = { HomeTopBar() }, // ✅ Keeps TopBar fixed
+        // this bottom bar was not called from scaffold bottomBar and it was called in Column
+        bottomBar = { BottomBar(navController,scrollState) }
     ) { paddingValues ->
         Box(
             modifier = Modifier.fillMaxSize()
@@ -328,13 +330,7 @@ fun HomeScreen(navController: NavController) {
                 }
 
             }
-            BottomBar(
-                navController,
-                scrollState,
-                modifier = Modifier
-                   .align(Alignment.BottomCenter)
-                   .fillMaxWidth()
-            )
+
 
 
         }

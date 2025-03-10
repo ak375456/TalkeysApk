@@ -23,7 +23,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun BottomBar(navController: NavController, scrollState: ScrollState, modifier: Modifier = Modifier) {
+fun BottomBar(
+    navController: NavController,
+    scrollState: ScrollState,
+    modifier: Modifier = Modifier,
+) {
     val backgroundColor by animateColorAsState(
         targetValue = if (scrollState.value > 100) Color.Black.copy(alpha = 0.3f)
         else Color.White.copy(alpha = 0.1f),
@@ -91,6 +95,7 @@ fun BottomBar(navController: NavController, scrollState: ScrollState, modifier: 
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable

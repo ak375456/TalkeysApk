@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -40,53 +41,59 @@ fun CommunitiesScreen(navController: NavController) {
         HomePageCommunity("Photography Pros", R.drawable.ic_community_card, "Capturing the best moments.")
     )
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black)
-                .padding(bottom = 56.dp) // Padding for BottomBar
-        ) {
-            // Top Bar
-            HomeTopBar()
-
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                contentPadding = PaddingValues(bottom = 32.dp)
+    Scaffold (
+        modifier = Modifier.fillMaxSize(),
+        bottomBar = {
+            BottomBar(navController = navController, scrollState = rememberScrollState())
+        }
+    ){innerPadding->
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize()
+                    .background(Color.Black)
+                    .padding(bottom = 56.dp) // Padding for BottomBar
             ) {
-                // Title
-                item {
-                    Text(
-                        text = "Explore Communities",
-                        style = TextStyle(
-                            fontSize = 22.sp,
-                            fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
-                            color = Color.White,
-                            textAlign = TextAlign.Start
-                        ),
-                        modifier = Modifier.padding(top = 12.dp, start = 19.dp)
-                    )
+                // Top Bar
+                HomeTopBar()
+
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    contentPadding = PaddingValues(bottom = 32.dp)
+                ) {
+                    // Title
+                    item {
+                        Text(
+                            text = "Explore Communities",
+                            style = TextStyle(
+                                fontSize = 22.sp,
+                                fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+                                color = Color.White,
+                                textAlign = TextAlign.Start
+                            ),
+                            modifier = Modifier.padding(top = 12.dp, start = 19.dp)
+                        )
+                    }
+
+                    // Categories
+                    item { CommunityTitle("Category 1") }
+                    item { CommunityRow(category1Communities) }
+
+                    item { CommunityTitle("Category 2") }
+                    item { CommunityRow(category2Communities) }
+
+                    item { CommunityTitle("Category 3") }
+                    item { CommunityRow(category3Communities) }
+
+                    item { Footer() }
                 }
-
-                // Categories
-                item { CommunityTitle("Category 1") }
-                item { CommunityRow(category1Communities) }
-
-                item { CommunityTitle("Category 2") }
-                item { CommunityRow(category2Communities) }
-
-                item { CommunityTitle("Category 3") }
-                item { CommunityRow(category3Communities) }
-
-                item { Footer() }
             }
         }
-        val scrollState = rememberScrollState()
-
-        // BottomBar
-        BottomBar(navController = navController, scrollState,modifier = Modifier.align(Alignment.BottomCenter))
     }
+
+
 }
 
 @Composable

@@ -35,28 +35,28 @@ fun EventCard(title: String, location: String, imageRes: Int) {
     Box(
         modifier = Modifier
             .width(162.dp)
-            .shadow(
-                elevation = 40.dp, // Higher elevation for glow effect
-                spotColor = Color.White.copy(alpha = 0.5f), // Soft white glow
-                ambientColor = Color.White.copy(alpha = 0.5f),
-                shape = RoundedCornerShape(15.dp) // Keep shape consistent
-            )
+//            .shadow(
+//                elevation = 40.dp, // Higher elevation for glow effect
+//                spotColor = Color.White.copy(alpha = 0.5f), // Soft white glow
+//                ambientColor = Color.White.copy(alpha = 0.5f),
+//                shape = RoundedCornerShape(15.dp) // Keep shape consistent
+//            )
     ) {
         // ✅ Grey Background Card
         Column(
             verticalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.Start,
             modifier = Modifier
-                .shadow(
-                    elevation = 4.dp,
-                    spotColor = Color(0xFF000000),
-                    ambientColor = Color(0xFF000000)
-                )
-                .shadow(
-                    elevation = 27.dp,
-                    spotColor = Color(0x40FFFFFF),
-                    ambientColor = Color(0x40FFFFFF)
-                )
+//                .shadow(
+//                    elevation = 4.dp,
+//                    spotColor = Color(0xFF000000),
+//                    ambientColor = Color(0xFF000000)
+//                )
+//                .shadow(
+//                    elevation = 27.dp,
+//                    spotColor = Color(0x40FFFFFF),
+//                    ambientColor = Color(0x40FFFFFF)
+//                )
                 .width(162.dp)
                 .background(color = Color(0x1AFFFFFF), shape = RoundedCornerShape(size = 15.dp))
                 .padding(start = 6.dp, top = 6.dp, bottom = 6.dp) // ✅ Removed right padding
